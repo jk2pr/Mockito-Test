@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TDD-MVP</string>
+    <string name="app_name">Mockito</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
