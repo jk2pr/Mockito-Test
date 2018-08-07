@@ -34,8 +34,15 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.11'
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 
+
+
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-all:2.0.2-beta'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}"
+    /*androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'*/
+
+    //Mockito
+
+    testImplementation "org.mockito:mockito-core:2.15.0"
 }

@@ -14,5 +14,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="showError">User Name is Empty</string>
+    <string name="showUserNameError">User Name is Empty</string>
+    <string name="showPasswordError">Password is Empty</string>
 </resources>

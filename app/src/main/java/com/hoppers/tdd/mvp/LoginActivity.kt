@@ -9,6 +9,18 @@ import kotlinx.android.synthetic.main.activity_login.*
  * A login screen that offers login via email/password.
  */
 class LoginActivity : AppCompatActivity(), LoginView {
+    override fun getPassword(): String {
+      return  password.text.toString()
+    }
+
+    override fun showPasswordError(showError: Int) {
+        password.error = getString(showError)
+    }
+
+    private val presenter: Presenter by lazy {
+        Presenter(this, LoginService())
+    }
+
     override fun getUserName(): String {
         return email.text.toString()
     }
@@ -17,16 +29,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
         email.error = getString(showError)
     }
 
-    private val presenter: Presenter by lazy {
-        Presenter(this, LoginService())
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        // Set up the login form.
-
         email_sign_in_button.setOnClickListener {
             presenter.onLoginClick()
         }

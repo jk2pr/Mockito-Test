@@ -2,27 +2,30 @@ package com.hoppers.tdd.mvp
 
 import com.hoppers.tdd_mvp.R
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.runners.MockitoJUnitRunner
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
+import org.mockito.Mockito.`when` as WhenEver
 
-
-@RunWith(MockitoJUnitRunner::class)
 class PresenterTest {
 
+    @Mock
+    private lateinit var service: LoginService
+    @Mock
+    private lateinit var view: LoginView
 
-    private val service: LoginService by lazy { Mockito.mock(LoginService::class.java) }
-    private val view: LoginView by lazy { Mockito.mock(LoginView::class.java) }
-    private var presenter: Presenter? =null
+    private var presenter: Presenter? = null
 
+    @Rule
+    @JvmField
+    var rule: MockitoRule = MockitoJUnit.rule()
 
     @Before
     fun setUP() {
-        presenter=Presenter(view, service)
+        presenter = Presenter(view, service)
     }
 
     @Test
@@ -32,9 +35,20 @@ class PresenterTest {
 
     @Test
     fun shouldShowErrorMessageWhenUserNameEmpty() {
-        `when`(view.getUserName()).thenReturn("")
+        WhenEver(view.getUserName()).thenReturn("")
+        WhenEver(view.getPassword()).thenReturn("abcd")
         presenter?.onLoginClick()
-        verify(view.showUserNameError(R.string.showError))
+        verify(view).showUserNameError(R.string.showUserNameError)
+
+
+    }
+
+    @Test
+    fun shouldShowErrorMessageWhenPasswordEmpty() {
+        WhenEver(view.getUserName()).thenReturn("Jitendra")
+        WhenEver(view.getPassword()).thenReturn("")
+        presenter?.onLoginClick()
+        verify(view).showPasswordError(R.string.showPasswordError)
 
 
     }
