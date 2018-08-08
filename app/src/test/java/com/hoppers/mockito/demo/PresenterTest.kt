@@ -1,6 +1,7 @@
 package com.hoppers.mockito.demo
 
 
+import kotlinx.android.synthetic.main.activity_login.view.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,15 +29,11 @@ class PresenterTest {
         presenter = Presenter(view, service)
     }
 
-    @Test
-    fun onLoginClick() {
-
-    }
 
     @Test
     fun shouldShowErrorMessageWhenUserNameEmpty() {
         WhenEver(view.getUserName()).thenReturn("")
-     //   WhenEver(view.getPassword()).thenReturn("abcd")
+        //   WhenEver(view.getPassword()).thenReturn("abcd")
         presenter?.onLoginClick()
         verify(view).showUserNameError(R.string.showUserNameError)
 
@@ -51,5 +48,13 @@ class PresenterTest {
         verify(view).showPasswordError(R.string.showPasswordError)
 
 
+    }
+
+    @Test
+    fun doSuccessLogin() {
+        WhenEver(view.getUserName()).thenReturn("Jitendra")
+        WhenEver(view.getPassword()).thenReturn("123456")
+        presenter?.onLoginClick()
+        verify(service)?.doLogin(view.getUserName(), view.getPassword())
     }
 }

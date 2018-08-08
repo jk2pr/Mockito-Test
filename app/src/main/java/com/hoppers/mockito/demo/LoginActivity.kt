@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_login.*
  */
 class LoginActivity : AppCompatActivity(), ILoginView {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -17,8 +16,9 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             presenter.onLoginClick()
         }
     }
+
     override fun getPassword(): String {
-      return  password.text.toString()
+        return password.text.toString()
     }
 
     override fun showPasswordError(showError: Int) {
