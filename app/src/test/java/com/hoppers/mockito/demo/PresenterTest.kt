@@ -1,7 +1,6 @@
 package com.hoppers.mockito.demo
 
 
-import kotlinx.android.synthetic.main.activity_login.view.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
