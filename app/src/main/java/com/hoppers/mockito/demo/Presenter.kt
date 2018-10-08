@@ -1,7 +1,6 @@
 package com.hoppers.mockito.demo
 
-class Presenter(val view: ILoginView, val service: LoginService)  {
-
+class Presenter(val view: ILoginView, private val service: LoginService) {
 
 
     fun onLoginClick() {
@@ -13,7 +12,16 @@ class Presenter(val view: ILoginView, val service: LoginService)  {
             view.showPasswordError(R.string.showPasswordError)
             return
         }
-        service.doLogin(view.getUserName(),view.getPassword())
+        service.doLogin(view.getUserName(), view.getPassword(), object : ILoginCallback {
+            override fun userAuthFail() {
+                view.doOnFail()
+            }
+
+            override fun userAuthSuccess() {
+                view.doOnSuccess()
+            }
+
+        })
 
     }
 

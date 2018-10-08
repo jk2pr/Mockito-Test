@@ -7,6 +7,8 @@ package com.hoppers.mockito.demo
         fun showUserNameError(showError: Int)
         fun getPassword(): String
         fun showPasswordError(showError: Int)
+        fun doOnSuccess()
+        fun doOnFail()
     }
 
 

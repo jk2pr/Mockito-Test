@@ -2,12 +2,23 @@ package com.hoppers.mockito.demo
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
  * A login screen that offers login via email/password.
  */
 class LoginActivity : AppCompatActivity(), ILoginView {
+    override fun doOnFail() {
+        Log.d(this.javaClass.simpleName,"Login Fail")
+        Toast.makeText(this, "Login Fail", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun doOnSuccess() {
+        Log.d(this.javaClass.simpleName,"Login Success")
+        Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
